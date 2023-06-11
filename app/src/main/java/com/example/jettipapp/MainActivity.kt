@@ -169,13 +169,13 @@ fun BillForm(modifier : Modifier = Modifier, onValueChange : (String) -> Unit = 
                 // Tip Row
                 Row (modifier = Modifier.padding(10.dp))
                 {
-                    Text(text = "Text", style = MaterialTheme.typography.h5, fontWeight = FontWeight.Bold)
+                    Text(text = "Tip", style = MaterialTheme.typography.h5, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.width(183.dp))
-                    Text(text = "$33", modifier = Modifier.align(Alignment.CenterVertically),
+                    Text(text = "$ 33", modifier = Modifier.align(Alignment.CenterVertically),
                         style = MaterialTheme.typography.h6)
                 }
             
-                Spacer(modifier = Modifier.height(18.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Tip Slider Column
                 Column(verticalArrangement = Arrangement.Center,
@@ -184,7 +184,7 @@ fun BillForm(modifier : Modifier = Modifier, onValueChange : (String) -> Unit = 
                         .padding(10.dp)
                         .fillMaxWidth())
                 {
-                    Text(text = "33%", style = MaterialTheme.typography.h6)
+                    Text(text = "33 %", style = MaterialTheme.typography.h6)
                     Spacer(modifier = Modifier.height(14.dp))
                     
                     Slider(
