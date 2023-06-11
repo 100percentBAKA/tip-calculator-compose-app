@@ -11,5 +11,5 @@ This is a simple tip calculator application built using Jetpack Compose.
 
 ## Screenshots
 
-![](https://github.com/Adarsh-ctrl-v/tip-calculator-compose-app/blob/main/app/tip-calculator-compose-app.png)
+![](https://github.com/Adarsh-ctrl-v/tip-calculator-compose-app/blob/main/tip-calculator-compose-app.png)
 
