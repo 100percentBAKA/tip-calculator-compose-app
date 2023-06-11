@@ -1,5 +1,6 @@
 package com.example.jettipapp.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -42,6 +43,6 @@ fun InputField(
         enabled = isEnabled,
         keyboardOptions = KeyboardOptions(keyboardType = keyboard_type, imeAction = imeAction),
 
-        modifier = modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+        modifier = modifier.padding(horizontal = 10.dp, vertical = 10.dp).fillMaxWidth()
     )
 }
