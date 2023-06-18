@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -87,7 +88,26 @@ fun TopHeaderSurface(totalPerPerson : Double) {
 @Preview
 @Composable
 fun MainContent () {
-    BillForm() {
+    val splitByState = remember {
+        mutableStateOf(1) // split value cannot be 0
+    }
+
+    val range = IntRange(start = 1, endInclusive = 100)
+
+    val tipAmountState = remember {
+        mutableStateOf(0.0) // tip amount can be 0
+    }
+
+    val totalPerPersonState = remember {
+        mutableStateOf(0.0)
+    }
+
+    BillForm(
+        range = range,
+        splitByState = splitByState,
+        tipAmountState = tipAmountState,
+        totalPerPersonState = totalPerPersonState
+    ) {
         billAmount ->
         Log.d("AMT", "MainContent: $billAmount")
     }
@@ -95,8 +115,20 @@ fun MainContent () {
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun BillForm(modifier : Modifier = Modifier, onValueChange : (String) -> Unit = {})
+fun BillForm(
+    modifier : Modifier = Modifier,
+    range : IntRange = 1..100, // 100 inclusive
+    splitByState: MutableState <Int>,
+    tipAmountState: MutableState <Double>,
+    totalPerPersonState: MutableState <Double>,
+    onValueChange : (String) -> Unit = {})
 {
+    val sliderPositionState = remember {
+        mutableStateOf(0f)
+    }
+
+    val tipPercentage = ((sliderPositionState.value) * 100).toInt()
+
     val totalBillState = remember {
         mutableStateOf("")
     }
@@ -106,26 +138,6 @@ fun BillForm(modifier : Modifier = Modifier, onValueChange : (String) -> Unit = 
     }
 
     val keyboardController = LocalSoftwareKeyboardController.current
-
-    val sliderPositionState = remember {
-        mutableStateOf(0f)
-    }
-
-    val splitByState = remember {
-        mutableStateOf(1) // split value cannot be 0
-    }
-
-    val range = IntRange(start = 1, endInclusive = 100)
-
-    val tipPercentage = ((sliderPositionState.value) * 100).toInt()
-
-    val tipAmountState = remember {
-        mutableStateOf(0.0) // tip amount can be 0
-    }
-
-    val totalPerPersonState = remember {
-        mutableStateOf(0.0)
-    }
 
     Surface(modifier = Modifier
         .padding(horizontal = 8.dp, vertical = 10.dp)
